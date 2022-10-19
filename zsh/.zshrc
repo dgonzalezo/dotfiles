@@ -161,7 +161,8 @@ bindkey "^[[B" history-beginning-search-forward-end
 export FZF_DEFAULT_OPTS='--height 40% --layout=reverse --border'
 source /etc/zsh/zprofile
 # export _JAVA_AWT_WM_NONREPARENTING=1 #java application fix GUI problems
-
+#hubster project
+export GCLOUD_PROJECT="hubster-305121"
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

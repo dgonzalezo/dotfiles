@@ -137,7 +137,31 @@ dap_install.config("ruby_vsc", {
 		},
 	},
 })
-
+-- local dap = require('dap')
+--     dap.adapters.chrome = {
+--       -- executable: launch the remote debug adapter - server: connect to an already running debug adapter    
+--       type = "executable",
+--       -- command to launch the debug adapter - used only on executable type    
+--       command = "node",
+--       args = { os.getenv("HOME") .. "/elian/Documents/Trabajo/dev/vscode-chrome-debug/out/src/chromeDebug.js" }
+--     }
+--     -- The configuration must be named: typescript    
+--     dap.configurations.javascript = {
+--       {
+--         name = "Debug (Attach) - Remote",
+--         type = "chrome",
+--         request = "attach",
+--         -- program = "${file}",    
+--         -- cwd = vim.fn.getcwd(),    
+--         sourceMaps = true,
+--         --      reAttach = true,    
+--         trace = true,
+--         -- protocol = "inspector",    
+--         -- hostName = "127.0.0.1",    
+--         port = 9222,
+--         webRoot = "${workspaceFolder}"
+--       }
+--     }
 -- Additional Plugins
 lvim.plugins = {
 	{ "folke/tokyonight.nvim" },
