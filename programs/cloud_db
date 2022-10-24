@@ -1,0 +1,12 @@
+#!/bin/bash
+function has-session {
+  lsof -t -i :1433 -s TCP:LISTEN >/dev/null
+}
+has-session
+if [ "$?" -eq 1 ]; then
+  ~/Documents/Trabajo/Hubster/scripts/cloud_sql_proxy  -instances=hubster-305121:us-east1:hubster=tcp:1433 > /dev/null 2>&1 &
+  echo "Runnig SQL Proxy"
+else
+  kill -9 $(lsof -t -i :1433 -s TCP:LISTEN)
+  echo "Stopping SQL Proxy"
+fi
