@@ -1,0 +1,64 @@
+# =============================================================================
+# Secrets — NEVER commit
+# =============================================================================
+# OpenCode global config (contains API keys: Onyx MCP gateway, Obsidian, etc.)
+**/opencode/opencode.json
+**/opencode/opencode.json.bak.*
+# OpenCode notifier runtime state
+**/opencode/opencode-notifier-state.json
+
+# Generic secret patterns
+*.local
+*.private
+*.secret
+.env
+.env.*
+!.env.example
+
+# SSH / GPG keys
+**/.ssh/id_*
+**/.ssh/known_hosts
+**/.ssh/known_hosts.old
+**/.gnupg/
+
+# 1Password / Keychain leftovers
+*.token
+.aws/credentials
+.aws/sso/cache/
+
+# =============================================================================
+# Runtime state / generated
+# =============================================================================
+# Fish
+**/fish/fish_variables
+**/fish/conf.d/*.fish.bak
+
+# Lazygit
+**/lazygit/state.yml
+
+# Neovim / LazyVim
+# NOTE: lazy-lock.json IS committed (pins plugin versions across machines)
+**/nvim/.netrwhist
+**/nvim-data/
+
+# Node / Bun (opencode plugins)
+**/opencode/node_modules/
+**/opencode/package-lock.json
+**/opencode/bun.lock
+**/opencode/yarn.lock
+
+# =============================================================================
+# OS junk
+# =============================================================================
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+Thumbs.db
+
+# =============================================================================
+# Editor swap
+# =============================================================================
+*.swp
+*.swo
+*~
