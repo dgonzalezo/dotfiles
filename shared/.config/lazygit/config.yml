@@ -1,16 +1,14 @@
 git:
-  paging:
-    # Removed delta pager: it can consume several GB of RAM rendering large
-    # diffs in this monorepo (especially generated files / BUILD files).
-    # Lazygit's built-in diff view already has colors.
-    colorArg: always
-    pager: cat
-
+  pagers:
+    - # Removed delta pager: it can consume several GB of RAM rendering large
+      # diffs in this monorepo (especially generated files / BUILD files).
+      # Lazygit's built-in diff view already has colors.
+      colorArg: always
+      pager: cat
   autoFetch: false
   # Reduced refresh load. With 20k+ remote branches and 196k+ commits in this
   # monorepo, refreshing every 10s constantly re-runs git plumbing commands.
   autoRefresh: true
-
   log:
     # Removed --graph: drawing the commit graph over a 196k-commit, 20k-branch
     # repo is one of the heaviest operations lazygit can do.
@@ -18,21 +16,17 @@ git:
     graph: --color=always --abbrev-commit --decorate --date=relative --max-count=100
     # date-order is cheaper than topo-order on huge repos
     order: date-order
-
   # When showing log of a single branch, also limit commits
   branchLogCmd: 'git log --color=always --abbrev-commit --decorate --date=relative --pretty=medium --max-count=100 {{branchName}} --'
-
   # Skip running git diff on every keystroke in some cases
   diffContextSize: 3
   commitLength:
     show: false
-
 refresher:
   # Refresh files/branches every 60s instead of 10s. With 121k tracked files
   # and 20k branches, every refresh is expensive.
   refreshInterval: 60
   fetchInterval: 300
-
 gui:
   nerdFontsVersion: "3"
   showFileTree: true
