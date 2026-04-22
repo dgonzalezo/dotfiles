@@ -1,0 +1,65 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "_comment": "Copy this file to opencode.json and fill in your secrets. opencode.json is gitignored.",
+
+  "plugin": [
+    "@mohak34/opencode-notifier@latest"
+  ],
+  "disabled_providers": [
+    "opencode"
+  ],
+
+  "mcp": {
+    "obsidian-local-rest": {
+      "command": [
+        "npm",
+        "exec",
+        "@onyxsecurity/mcp-gateway@63e1562e",
+        "--",
+        "/Users/YOUR_USER/.nvm/versions/node/vXX.X.X/bin/node",
+        "/Users/YOUR_USER/.claude/obsidian-mcp/index.js"
+      ],
+      "enabled": false,
+      "environment": {
+        "CLIENT_APP_NAME": "opencode",
+        "MCP_GATEWAY_ACCESS_CONTROL_URL": "https://ai-guard.onyx.security/access-control/authorize",
+        "MCP_GATEWAY_MIRROR_API_KEY": "<REDACTED-ONYX-MIRROR-KEY>",
+        "MCP_GATEWAY_MIRROR_URL": "https://ingest.onyx.security/mcp-gateway",
+        "MCP_GATEWAY_SCANNER_API_KEY": "<REDACTED-ONYX-SCANNER-KEY>",
+        "MCP_GATEWAY_SCANNER_URL": "https://ai-guard.onyx.security/guard/evaluate/v1",
+        "OBSIDIAN_API_KEY": "<REDACTED-OBSIDIAN-API-KEY>",
+        "OBSIDIAN_API_URL": "http://127.0.0.1:27123"
+      },
+      "type": "local"
+    }
+  },
+
+  "permission": {
+    "bash": {
+      "*": "ask",
+      "aws": "deny",
+      "cat": "allow",
+      "echo": "allow",
+      "find": "allow",
+      "git diff": "allow",
+      "git log": "allow",
+      "git show": "allow",
+      "git status": "allow",
+      "grep": "allow",
+      "ls": "allow",
+      "osascript": "deny",
+      "pwd": "allow",
+      "terraform": "deny"
+    }
+  },
+
+  "provider": {
+    "fireworks-ai": {
+      "options": {
+        "baseURL": "https://ai-guard.onyx.security/<REDACTED-ONYX-PATH-TOKEN>/api.fireworks.ai/inference/v1"
+      }
+    }
+  },
+
+  "share": "disabled"
+}

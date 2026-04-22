@@ -1,0 +1,5 @@
+# Increase timeout for slow commands (default is 500ms)
+command_timeout = 2000
+
+[python]
+disabled = true

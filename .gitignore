@@ -39,6 +39,7 @@
 # Neovim / LazyVim
 # NOTE: lazy-lock.json IS committed (pins plugin versions across machines)
 **/nvim/.netrwhist
+**/nvim/.claude/
 **/nvim-data/
 
 # Node / Bun (opencode plugins)

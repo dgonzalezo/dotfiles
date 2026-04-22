@@ -1,0 +1,22 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "snapshot": false,
+  "watcher": {
+    "ignore": [
+      "bazel-*/**",
+      "**/bazel-*/**",
+      "node_modules/**",
+      "**/node_modules/**",
+      ".git/**",
+      "build-support/go/pkg/**",
+      "build-support/go/sdk/**",
+      "src/go/compass.com/**/mocks/**",
+      "**/__pycache__/**",
+      "**/.pytest_cache/**",
+      "**/dist/**",
+      "**/.venv/**",
+      "tmp/**",
+      "/tmp/**"
+    ]
+  }
+}

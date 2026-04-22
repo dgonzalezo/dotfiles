@@ -1,0 +1,39 @@
+font-family = "DejaVuSansM Nerd Font"
+font-size = 18
+theme = tokyonight
+# Navigate window splits
+keybind = opt+h=goto_split:left
+keybind = opt+j=goto_split:bottom
+keybind = opt+k=goto_split:top
+keybind = opt+l=goto_split:right
+
+keybind = opt+shift+h=new_split:left
+keybind = opt+shift+j=new_split:down
+keybind = opt+shift+k=new_split:up
+keybind = opt+shift+l=new_split:right
+
+keybind = opt+shift+l=new_split:right
+
+keybind = ctrl+l=next_tab
+keybind = ctrl+h=previous_tab
+
+desktop-notifications = true
+
+# Bell behavior: when a process writes BEL (\a), bounce the Dock icon,
+# play a system sound, and mark the tab/window as needing attention.
+# Used by the OpenCode notifications plugin.
+bell-features = system,audio,attention
+
+keybind = global:ctrl+==toggle_quick_terminal
+
+
+quick-terminal-position=center
+quick-terminal-animation-duration = 0.1
+# Tamaño de la terminal rápida (puedes usar porcentaje o celdas)
+quick-terminal-size = 60%,80%
+
+# Qué pantalla usar (donde está el ratón, la principal, etc.)
+quick-terminal-screen = main
+
+# Si quieres que la terminal se oculte automáticamente al perder el foco
+quick-terminal-autohide = true
