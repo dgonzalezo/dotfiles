@@ -10,6 +10,14 @@ set fish_greeting ""
 
 set -gx TERM xterm-256color
 
+# Ensure XDG-aware tools (lazygit, neovim, opencode, ghostty, etc.) read from
+# ~/.config on macOS. Without this, lazygit silently uses
+# ~/Library/Application Support/lazygit/ instead, ignoring our config entirely.
+set -gx XDG_CONFIG_HOME $HOME/.config
+set -gx XDG_DATA_HOME $HOME/.local/share
+set -gx XDG_STATE_HOME $HOME/.local/state
+set -gx XDG_CACHE_HOME $HOME/.cache
+
 # theme
 set -g theme_color_scheme
 set -g fish_prompt_pwd_dir_length 1

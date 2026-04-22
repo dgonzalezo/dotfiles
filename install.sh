@@ -122,22 +122,37 @@ if ! brew list --cask ghostty >/dev/null 2>&1; then
 fi
 
 # ---------------------------- Stow ------------------------------------------
+# IMPORTANT: we deliberately do NOT use a .stowrc file. Past experience shows
+# that having "--target=\$HOME --dir=\$PWD" in .stowrc can interact poorly with
+# explicit --target on the command line (stow's de-dup of args can cause it to
+# silently skip directories). Using bare flags here avoids that.
+#
+# --no-folding: never replace a target directory with a single symlink to the
+#   package; always create per-file symlinks. This lets multiple profiles
+#   (e.g. shared + work) coexist inside the same target subdirectory like
+#   ~/.config/fish/.
 log "Stowing profiles into \$HOME..."
+STOW_FLAGS=(--no-folding --target="$HOME" --dir="$REPO_DIR")
+
 for profile in "${PROFILES[@]}"; do
   if [[ ! -d "$REPO_DIR/$profile" ]]; then
     warn "Profile directory '$profile' doesn't exist, skipping."
     continue
   fi
-  log "  stow $profile"
-  # Run a dry-run first to check for conflicts
-  if ! ( cd "$REPO_DIR" && stow --no --target="$HOME" --dir="$REPO_DIR" "$profile" 2>&1 | grep -q "WARNING\|conflict" ); then
-    ( cd "$REPO_DIR" && stow --target="$HOME" --dir="$REPO_DIR" "$profile" )
-    ok "  $profile stowed."
-  else
-    warn "  Conflicts detected for '$profile'. Run manually to resolve:"
-    warn "    cd $REPO_DIR && stow -nv --target=\$HOME $profile"
-    warn "  Then move conflicting files aside (e.g. mv ~/.config/foo ~/.config/foo.bak) and re-run."
+
+  # Dry-run conflict check
+  conflicts=$(stow "${STOW_FLAGS[@]}" --no -v "$profile" 2>&1 | grep -E "WARNING|conflict|existing target" || true)
+  if [[ -n "$conflicts" ]]; then
+    warn "Conflicts detected for '$profile':"
+    echo "$conflicts" | sed 's/^/    /' >&2
+    warn "Resolve them (move pre-existing files aside) and re-run, e.g.:"
+    warn "    mv ~/.config/foo ~/.config/foo.preinstall.bak"
+    continue
   fi
+
+  log "  stow $profile"
+  stow "${STOW_FLAGS[@]}" "$profile"
+  ok "  $profile stowed."
 done
 
 # ---------------------------- post-install ----------------------------------
